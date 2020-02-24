@@ -1,3 +1,5 @@
+package production;
+
 public enum Visibility {
 	NOVISIBILITY,
 	LOWVISIBILITY,
