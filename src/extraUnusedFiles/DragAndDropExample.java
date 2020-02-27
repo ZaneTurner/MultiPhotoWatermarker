@@ -1,142 +1,101 @@
 package extraUnusedFiles;
-
-import java.awt.BorderLayout;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import javax.swing.Box;
-import javax.swing.DefaultListModel;
-import javax.swing.DropMode;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
-
+import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DragAndDropExample extends JFrame {
-	
-  private JTextField newTextField = new JTextField(10);
-  private JList<String> sourceList = new JList<>(new DefaultListModel<>());
-  private JList<String> destList = new JList<>(new DefaultListModel<>());
-  
-  public DragAndDropExample() {
-	  
-    for (int i = 0; i < 15; i++) {
-      ((DefaultListModel<String>) sourceList.getModel()).add(i, "A " + i);
-      ((DefaultListModel<String>) destList.getModel()).add(i, "B " + i);
+
+    public DragAndDropExample() {
+
+        initUI();
     }
-    
-    Box nameBox = Box.createHorizontalBox();
-    nameBox.add(new JLabel("New:"));
-    nameBox.add(newTextField);
 
-    Box sourceBox = Box.createVerticalBox();
-    sourceBox.add(new JLabel("Source"));
-    sourceBox.add(new JScrollPane(sourceList));
+    private void initUI() {
 
-    Box destBox = Box.createVerticalBox();
-    destBox.add(new JLabel("Destination"));
-    destBox.add(new JScrollPane(destList));
+        var icon1 = new ImageIcon("src/resources/sad.png");
+        var icon2 = new ImageIcon("src/resources/plain.png");
+        var icon3 = new ImageIcon("src/resources/smile.png");
 
-    Box listBox = Box.createHorizontalBox();
-    listBox.add(sourceBox);
-    listBox.add(destBox);
+        var label1 = new JLabel(icon1, JLabel.CENTER);
+        var label2 = new JLabel(icon2, JLabel.CENTER);
+        var label3 = new JLabel(icon3, JLabel.CENTER);
 
-    Box allBox = Box.createVerticalBox();
-    allBox.add(nameBox);
-    allBox.add(listBox);
+        var listener = new DragMouseAdapter();
+        label1.addMouseListener(listener);
+        label2.addMouseListener(listener);
+        label3.addMouseListener(listener);
 
-    this.getContentPane().add(allBox, BorderLayout.CENTER);
+        var button = new JButton(icon2);
+        button.setFocusable(false);
 
-    sourceList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    destList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        label1.setTransferHandler(new TransferHandler("icon"));
+        label2.setTransferHandler(new TransferHandler("icon"));
+        label3.setTransferHandler(new TransferHandler("icon"));
+        button.setTransferHandler(new TransferHandler("icon"));
 
-    newTextField.setDragEnabled(true);
-    sourceList.setDragEnabled(true);
-    destList.setDragEnabled(true);
+        createLayout(label1, label2, label3, button);
 
-    sourceList.setDropMode(DropMode.INSERT);
-    destList.setDropMode(DropMode.INSERT);
-
-    sourceList.setTransferHandler(new ListTransferHandler());
-    destList.setTransferHandler(new ListTransferHandler());
-  }
-  
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> {
-      DragAndDropExample frame = new DragAndDropExample();
-      frame.pack();
-      frame.setVisible(true);
-    });
-  }
-}
-
-class ListTransferHandler extends TransferHandler {
-  @Override
-  public int getSourceActions(JComponent c) {
-    return TransferHandler.COPY_OR_MOVE;
-  }
-  
-  @Override
-  protected Transferable createTransferable(JComponent source) {
-    JList<String> sourceList = (JList<String>) source;
-    String data = sourceList.getSelectedValue();
-    Transferable t = new StringSelection(data);
-    return t;
-  }
-
-  @Override
-  protected void exportDone(JComponent source, Transferable data, int action) {
-    @SuppressWarnings("unchecked")
-    JList<String> sourceList = (JList<String>) source;
-    String movedItem = sourceList.getSelectedValue();
-    if (action == TransferHandler.MOVE) {
-      DefaultListModel<String> listModel = (DefaultListModel<String>) sourceList
-          .getModel();
-      listModel.removeElement(movedItem);
+        setTitle("Icon Drag & Drop");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
-  }
-  
-  @Override
-  public boolean canImport(TransferHandler.TransferSupport support) {
-    if (!support.isDrop()) {
-      return false;
+
+    private class DragMouseAdapter extends MouseAdapter {
+
+        public void mousePressed(MouseEvent e) {
+
+            var c = (JComponent) e.getSource();
+            var handler = c.getTransferHandler();
+            handler.exportAsDrag(c, e, TransferHandler.COPY);
+        }
     }
-    return support.isDataFlavorSupported(DataFlavor.stringFlavor);
-  }
-  
-  @Override
-  public boolean importData(TransferHandler.TransferSupport support) {
-    if (!this.canImport(support)) {
-      return false;
+
+    private void createLayout(JComponent... arg) {
+
+        var pane = getContentPane();
+        var gl = new GroupLayout(pane);
+        pane.setLayout(gl);
+
+        gl.setAutoCreateContainerGaps(true);
+        gl.setAutoCreateGaps(true);
+
+        gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addGroup(gl.createSequentialGroup()
+                        .addComponent(arg[0])
+                        .addGap(30)
+                        .addComponent(arg[1])
+                        .addGap(30)
+                        .addComponent(arg[2])
+                )
+                .addComponent(arg[3], GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.DEFAULT_SIZE, Integer.MAX_VALUE)
+        );
+
+        gl.setVerticalGroup(gl.createSequentialGroup()
+                .addGroup(gl.createParallelGroup()
+                        .addComponent(arg[0])
+                        .addComponent(arg[1])
+                        .addComponent(arg[2]))
+                .addGap(30)
+                .addComponent(arg[3])
+        );
+
+        pack();
     }
-    Transferable t = support.getTransferable();
-    String data = null;
-    try {
-      data = (String) t.getTransferData(DataFlavor.stringFlavor);
-      if (data == null) {
-        return false;
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      return false;
+
+    public static void main(String[] args) {
+
+        EventQueue.invokeLater(() -> {
+
+            var ex = new DragAndDropExample();
+            ex.setVisible(true);
+        });
     }
-    JList.DropLocation dropLocation = (JList.DropLocation) support
-        .getDropLocation();
-    int dropIndex = dropLocation.getIndex();
-    JList<String> targetList = (JList<String>) support.getComponent();
-    DefaultListModel<String> listModel = (DefaultListModel<String>) targetList
-        .getModel();
-    if (dropLocation.isInsert()) {
-      listModel.add(dropIndex, data);
-    } else {
-      listModel.set(dropIndex, data);
-    }
-    return true;
-  }
 }

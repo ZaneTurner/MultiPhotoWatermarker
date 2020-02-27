@@ -23,9 +23,6 @@ public class InputValidator {
 	
 	private Boolean isFolderPathValid(String folderPath) {
 		File folder = new File(folderPath);
-		if(!folder.getAbsolutePath().endsWith("/")) {
-			folder = new File(folderPath + "/");
-		}
 		if(folder.exists()) {
 			return true;
 		}
@@ -45,4 +42,24 @@ public class InputValidator {
 		System.out.println(file.getAbsolutePath() + " image format is not valid");
 		return false;
 	}
+	
+	public String correctWatermarkPath(String watermarkPath) {
+		if(!watermarkPath.startsWith("/")) {
+			watermarkPath = "/" + watermarkPath;
+		}
+		return watermarkPath;
+	}
+	
+	public String correctFolderPath(String folderPath) {
+		if(!folderPath.endsWith("/")) {
+			folderPath = folderPath + "/";
+		}
+		
+		if(!folderPath.startsWith("/")) {
+			folderPath = "/" + folderPath;
+		}
+		
+		return folderPath;
+	}
+	
 }

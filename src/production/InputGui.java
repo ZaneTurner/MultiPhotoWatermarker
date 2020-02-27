@@ -1,5 +1,4 @@
 package production;
-
 import javax.swing.JOptionPane;
 
 public class InputGui {
@@ -8,8 +7,8 @@ public class InputGui {
 	private String folderPath = null;
 	
 	InputGui() {
-		watermarkPath = JOptionPane.showInputDialog("Enter the watermark file path");
-		folderPath = JOptionPane.showInputDialog("Enter the folder of photos to be watermarked path");
+		watermarkPath = JOptionPane.showInputDialog("Enter the watermark file path (absolute path)");
+		folderPath = JOptionPane.showInputDialog("Enter the folder of photos to be watermarked path (absolute path)");
 		String message = "The watermarkPath is: " + watermarkPath + " and the folderPath is: " + folderPath;
 		JOptionPane.showMessageDialog(null, message);
 	}

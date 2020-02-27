@@ -1,12 +1,15 @@
 package Testing;
 import org.junit.Test;
+
+import production.ConfigProperities;
 import production.PhotoMerger;
 
 public class PhotoMergerTest {
 	
 	private final PhotoMerger photoMerger = new PhotoMerger();
-	private final String validWatermarkPath = "/Users/zaneturner/git/repository/MultiPhotoWatermarker/watermarks/watermark.png";
-	private final String validImageFolderPath = "/Users/zaneturner/git/repository/MultiPhotoWatermarker/ValidImages/";
+	ConfigProperities configProperities = new ConfigProperities();
+	private final String validWatermarkPath = configProperities.getWatermarkPath();
+	private final String validImageFolderPath = configProperities.getValidImageFolderPath();
 	
 	@Test
 	public void testPlaceWatermarkOnAllFilterInFolder(){

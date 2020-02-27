@@ -10,6 +10,8 @@ public class PhotoMerger {
 	
 	public void placeWatermarkOnAllFilesInFolder(String watermarkPath, String folderPath) { 
 		InputValidator inputValidator = new InputValidator();
+		folderPath = inputValidator.correctFolderPath(folderPath);
+		watermarkPath = inputValidator.correctWatermarkPath(watermarkPath);
 		
 		if(!inputValidator.isUserInputValid(watermarkPath, folderPath)) {
 			return;
@@ -22,7 +24,6 @@ public class PhotoMerger {
 		
 		for (String fileLocation : fileLocations) {
 			String absoluteFilePath = folderPath + fileLocation;
-			System.out.println(absoluteFilePath);
 			if(inputValidator.isUserInputValid(absoluteFilePath, folderPath)) {
 				Photo newPhoto = new Photo(absoluteFilePath, visibilityLevel);
 				String newPhotoPath = createNewPhotoPath(absoluteFilePath);
@@ -52,7 +53,7 @@ public class PhotoMerger {
 		}
 		
 	}
-
+	
 	
 	private static boolean isImageSizeValid(int width, int height) {
 		if (width > 0 && height > 0) {
@@ -66,7 +67,6 @@ public class PhotoMerger {
 		int lastPeriodLocation = photoPath.lastIndexOf(".");
 		String extension = photoPath.substring(lastPeriodLocation);
 		String newPhotoPath = photoPath.substring(0, lastPeriodLocation) + "New" + extension;
-		System.out.println(newPhotoPath);
 		return newPhotoPath;
 	}
 	

@@ -1,27 +1,29 @@
-/*
- * watermark path -
- * /Users/zaneturner/git/repository/MultiPhotoWatermarker/watermarks/watermark.png
- * images path -
- * /Users/zaneturner/git/repository/MultiPhotoWatermarker/images/
- * 
- */
 package production;
 public class ProjectController {
 
 	public static void main(String[] args) {
-		// used for GUI input
-		/*
+	}
+	
+	private static void startUsingGuiInput() {
 		InputGui inputGui = new InputGui();
 		String imageFolderPath = inputGui.getFolderPath();
 		String watermarkPath = inputGui.getWatermarkPath();
-		*/
-		//used for testing
-		//TODO get rid of these hard coded paths, make them relative to the program
+		PhotoMerger photoMerger = new PhotoMerger();
+		photoMerger.placeWatermarkOnAllFilesInFolder(watermarkPath, imageFolderPath);
+	}
+	
+	private static void startUsingConfigInput() {
 		ConfigProperities configProperities = new ConfigProperities();
-		String watermarkPath = configProperities.getWatermarkLocation();
+		String watermarkPath = configProperities.getWatermarkPath();
 		String imageFolderPath = configProperities.getValidImageFolderPath();
 		PhotoMerger photoMerger = new PhotoMerger();
 		photoMerger.placeWatermarkOnAllFilesInFolder(watermarkPath, imageFolderPath);
 	}
+	
+	public static void startUsingParameterInput(String watermarkPath, String imageFolderPath) {
+		PhotoMerger photoMerger = new PhotoMerger();
+		photoMerger.placeWatermarkOnAllFilesInFolder(watermarkPath, imageFolderPath);
+	}
+	
 	
 }

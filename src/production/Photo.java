@@ -3,10 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-/*
- * learn objects.requirenonnull in order to make argument isn't null
- * 
- */
+
 public class Photo {
 	public BufferedImage image = null;
 	public Visibility visibility = Visibility.HIGHVISIBILITY;
