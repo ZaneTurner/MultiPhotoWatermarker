@@ -2,6 +2,7 @@ package production;
 public class ProjectController {
 
 	public static void main(String[] args) {
+		startUsingGuiInput();
 	}
 	
 	private static void startUsingGuiInput() {
