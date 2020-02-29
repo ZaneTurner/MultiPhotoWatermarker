@@ -9,7 +9,7 @@ public class PhotoMergerTest {
 	private final PhotoMerger photoMerger = new PhotoMerger();
 	ConfigProperities configProperities = new ConfigProperities();
 	private final String validWatermarkPath = configProperities.getWatermarkPath();
-	private final String validImageFolderPath = configProperities.getValidImageFolderPath();
+	private final String validImageFolderPath = configProperities.getFolderPath();
 	
 	@Test
 	public void testPlaceWatermarkOnAllFilterInFolder(){

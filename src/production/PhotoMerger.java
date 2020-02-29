@@ -11,7 +11,7 @@ public class PhotoMerger {
 	public void placeWatermarkOnAllFilesInFolder(String watermarkPath, String folderPath) { 
 		InputValidator inputValidator = new InputValidator();
 		folderPath = inputValidator.correctFolderPath(folderPath);
-		watermarkPath = inputValidator.correctWatermarkPath(watermarkPath);
+		watermarkPath = inputValidator.correctImagePath(watermarkPath);
 		
 		if(!inputValidator.isUserInputValid(watermarkPath, folderPath)) {
 			return;

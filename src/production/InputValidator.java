@@ -43,7 +43,8 @@ public class InputValidator {
 		return false;
 	}
 	
-	public String correctWatermarkPath(String watermarkPath) {
+	public String correctImagePath(String watermarkPath) {
+		watermarkPath = watermarkPath.strip();
 		if(!watermarkPath.startsWith("/")) {
 			watermarkPath = "/" + watermarkPath;
 		}
@@ -51,6 +52,7 @@ public class InputValidator {
 	}
 	
 	public String correctFolderPath(String folderPath) {
+		folderPath = folderPath.strip();
 		if(!folderPath.endsWith("/")) {
 			folderPath = folderPath + "/";
 		}
@@ -59,7 +61,7 @@ public class InputValidator {
 			folderPath = "/" + folderPath;
 		}
 		
-		return folderPath;
+		return folderPath.strip();
 	}
 	
 }

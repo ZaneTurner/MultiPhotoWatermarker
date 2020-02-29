@@ -1,9 +1,11 @@
 package Testing;
 import production.ConfigProperities;
+
 import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
-import production.ProjectController;;
+import production.ProjectController;
+import production.InputValidator;
 
 public class ProjectControllerTest {
 	
@@ -11,7 +13,8 @@ public class ProjectControllerTest {
 	public void testMain() {
 		ConfigProperities configProperities = new ConfigProperities();
 		String watermarkPath = configProperities.getWatermarkPath();
-		String folderPath = configProperities.getValidImageFolderPath();
+		String folderPath = configProperities.getFolderPath();
+
 		this.isVariedInputsValid(watermarkPath, folderPath);
 		}
 	
@@ -40,7 +43,7 @@ public class ProjectControllerTest {
 		}
 		
 		private int getSizeOfFolder(String folderPath) {
-			return new File(folderPath).listFiles().length;
+			return new File(folderPath.strip()).listFiles().length;
 		}
 		
 

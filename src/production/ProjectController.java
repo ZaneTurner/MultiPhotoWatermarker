@@ -2,10 +2,12 @@ package production;
 public class ProjectController {
 
 	public static void main(String[] args) {
-		startUsingGuiInput();
+		//startUsingGuiInput();
+		startUsingConfigInput();
 	}
 	
 	private static void startUsingGuiInput() {
+		
 		InputGui inputGui = new InputGui();
 		String imageFolderPath = inputGui.getFolderPath();
 		String watermarkPath = inputGui.getWatermarkPath();
@@ -16,7 +18,7 @@ public class ProjectController {
 	private static void startUsingConfigInput() {
 		ConfigProperities configProperities = new ConfigProperities();
 		String watermarkPath = configProperities.getWatermarkPath();
-		String imageFolderPath = configProperities.getValidImageFolderPath();
+		String imageFolderPath = configProperities.getFolderPath();
 		PhotoMerger photoMerger = new PhotoMerger();
 		photoMerger.placeWatermarkOnAllFilesInFolder(watermarkPath, imageFolderPath);
 	}

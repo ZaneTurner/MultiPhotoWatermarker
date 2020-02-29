@@ -8,7 +8,7 @@ public class InputGui {
 	
 	InputGui() {
 		watermarkPath = JOptionPane.showInputDialog("Enter the watermark file path (absolute path)");
-		folderPath = JOptionPane.showInputDialog("Enter the folder of photos to be watermarked path (absolute path)");
+		folderPath =    JOptionPane.showInputDialog("Enter the images folder path (absolute path)");
 		String message = "The watermarkPath is: " + watermarkPath + " and the folderPath is: " + folderPath;
 		JOptionPane.showMessageDialog(null, message);
 	}

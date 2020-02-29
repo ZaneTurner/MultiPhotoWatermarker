@@ -12,7 +12,7 @@ public class InputValidatorTest {
 	
 	private final InputValidator inputValidator = new InputValidator();
 	ConfigProperities configProperities = new ConfigProperities();
-	private final String validPhotosFolderLocation = configProperities.getValidImageFolderPath();
+	private final String validPhotosFolderLocation = configProperities.getFolderPath();
 	
 	@Test
 	public void isUserInputValid(){

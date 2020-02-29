@@ -5,10 +5,11 @@ import org.junit.Test;
 import production.ConfigProperities;
 import production.Photo;
 import production.Visibility;
+import production.InputValidator;
 
 public class PhotoTest {
 	ConfigProperities configProperities = new ConfigProperities();
-	private final String photoLocation = configProperities.getValidImagePath();
+	private final String photoLocation = configProperities.getImagePath();
 
 	@Test
 	public void  testVisibility() {
