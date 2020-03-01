@@ -38,6 +38,9 @@ public class ProjectControllerTest {
 			String[] v2 = {watermarkPath, folderPath.substring(1)};
 			String[] v3 = {watermarkPath, folderPath.substring(0,folderPath.length()-1)};
 			String[] v4 = {watermarkPath, folderPath.substring(1, folderPath.length()-1)};
+			//String[] v5 = {watermarkPath, " " + folderPath.substring(1, folderPath.length()-1) + " "};
+			//String[] v6 = {" " + watermarkPath + " ", folderPath.substring(1, folderPath.length()-1)};
+			//String[] v7 = {" " + watermarkPath + " ", " " + folderPath.substring(1, folderPath.length()-1) + " "};
 			String[][] pathVariations = {v1,v2,v3,v4};
 			return pathVariations;
 		}

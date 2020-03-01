@@ -61,7 +61,7 @@ public class InputValidator {
 			folderPath = "/" + folderPath;
 		}
 		
-		return folderPath.strip();
+		return folderPath;
 	}
 	
 }
