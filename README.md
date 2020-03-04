@@ -19,6 +19,6 @@ Java was the only language used in this program. Gui was made using swing and th
 
 The configuration file is used for testing and as an alternative to GUI input. It has three variables: watermarkLocation, validImageFolderPath, and validImagePath. validImagePath is only used to test Photo.java, and that test is found in the testing package in the class PhotoTest.java.
 
-# Features that could be added
+# Features to be added
 
 Drag and drop functionality for both the folder/watermark would make this a much better project. Also figuring out a way to make the GUI look better would be great. Additionally, hosting it on a webpage would make the project more accessible. 
