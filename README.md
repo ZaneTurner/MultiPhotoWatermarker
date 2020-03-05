@@ -25,4 +25,4 @@ Drag and drop functionality for both the folder/watermark would make this a much
 
 # Notes
 
-Currently you have to include the full file path in the configuration file or in the GUI input.
+Currently you have to include the full file path in the configuration file or in the GUI input. Photos are from the non-copyrighted section of [unsplash](https://unsplash.com/images/stock/non-copyrighted)
