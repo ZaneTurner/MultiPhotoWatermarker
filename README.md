@@ -22,3 +22,7 @@ The configuration file is used for testing and as an alternative to GUI input. I
 # Features to be added
 
 Drag and drop functionality for both the folder/watermark would make this a much better project. Also figuring out a way to make the GUI look better would be great. Additionally, hosting it on a webpage would make the project more accessible. 
+
+# Notes
+
+Currently you have to include the full file path in the configuration file or in the GUI input.
